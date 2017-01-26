@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1 onclick="this.innerHTML='谢谢'">点击</h1>
+<script>
+    function changetext(id)
+    {
+        id.innerHTML=("Hello world!");
+
+    }
+</script>
+<h1 onclick="changetext(this)">请点击一下</h1>
+<script>
+    function myFunction()
+    {
+        var x=document.getElementById("fname");
+        x.value= x.value.toUpperCase();
+    }
+</script>
+请输入英文字符：<input type="text" id="fname" onchange="myFunction()"><hr/>
+<div onmouseover="mover(this)" onmouseout="mout(this)" style="background-color: red;width: 200px;height:100px;padding: 40px;color: #FFFFFF;">把鼠标移到上面</div>
+<script>
+    function mover(obj)
+    {
+        obj.innerHTML="Thank you!"
+    }
+    function mout(obj)
+    {
+        obj.innerHTML="把鼠标移到上面"
+    }
+</script>
+<h1 onmouseover="style.color='red'" onmouseout="style.color='blue'">欢迎来到英雄联盟</h1>
+
+</body>
+</html>
