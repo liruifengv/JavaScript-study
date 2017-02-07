@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>钟表</title>
+    <script type="text/javascript">
+        function startTime()
+        {
+            var today=new Date()
+            var h=today.getHours()
+            var m=today.getMinutes()
+            var s=today.getSeconds()
+            //如果小于10应该在前面加0；
+            m=checkTime(m)
+            s=checkTime(s)
+            document.getElementById('txt').innerHTML=h+":"+m+":"+s
+            var t = setTimeout('startTime()', 500)
+
+
+        }
+        function checkTime(i)
+        {
+            if(i<10)
+                (i="0"+i)
+            return i
+        }
+    </script>
+</head>
+<body onload="startTime()">
+<div id="txt">
+
+</div>
+
+
+</body>
+</html>
