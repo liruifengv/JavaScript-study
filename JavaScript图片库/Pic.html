@@ -3,38 +3,37 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>JavaScript图片库</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="js/showPic.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+
 </head>
 <body>
 <h1>My Picture</h1>
-<ul>
+<ul id="imagegallery">
     <li>
-        <a href="img/汤唯.jpg" onclick="showPic(this);return false;" title="my idol">汤唯</a>
+        <a href="img/汤唯.jpg"  title="my idol"><img src="img/汤唯1.jpg" alt="汤唯"></a>
     </li>
     <li>
-        <a href="img/汤唯女神.jpg" onclick="showPic(this);return false;" title="goddess">汤唯女神</a>
+        <a href="img/梦幻.jpg"  title="like a dream"><img src="img/梦幻1.jpg" alt="梦幻"></a>
     </li>
     <li>
-        <a href="img/梦幻.jpg" onclick="showPic(this);return false;" title="like a dream">梦幻</a>
+        <a href="img/小兔兔.jpeg"  title="a cute rabbit "><img src="img/小兔兔1.jpg" alt="小兔兔"></a>
     </li>
     <li>
-        <a href="img/小兔兔.jpeg" onclick="showPic(this);return false;" title="a cute rabbit ">小兔兔</a>
+        <a href="img/狗狗.jpg" title="a cute dog"><img src="img/狗狗1.jpg" alt="狗狗"></a>
     </li>
     <li>
-        <a href="img/狗狗.jpg" onclick="showPic(this);return false;" title="a cute dog">狗狗</a>
+        <a href="img/雪山.jpg"  title="a beautiful snowberg"><img src="img/雪山1.jpg" alt="雪山"></a>
     </li>
     <li>
-        <a href="img/雪山.jpg" onclick="showPic(this);return false;" title="a beautiful snowberg">雪山</a>
-    </li>
-    <li>
-        <a href="img/马尔代夫.jpg" onclick="showPic(this);return false;" title="Maldives">马尔代夫</a>
+        <a href="img/马尔代夫.jpg" title="Maldives"><img src="img/马尔代夫1.jpg" alt="马尔代夫"></a>
     </li>
 </ul>
 
 <img id="placeholder" src="img/1.jpg"  alt="my picture gallery">
 
 <p id="description">Choose a image.</p>
+
+<script type="text/javascript" src="js/showPic.js"></script>
 
 </body>
 </html>
