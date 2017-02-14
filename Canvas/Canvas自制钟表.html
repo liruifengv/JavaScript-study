@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas自制钟表</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .container{
+            width: 420px;
+            margin: 50px auto 0;
+
+        }
+        #time{
+            background:#fa0000;
+
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="drawing" width="420" height="420"></canvas>
+</div>
+
+<script>
+        var drawing=document.getElementById('drawing');
+    //判断浏览器是否支持getContext
+
+        var time=drawing.getContext('2d');
+
+        clock();
+        setInterval(clock,1000);
+        function clock(){
+            var img=new Image();
+            img.src="img/小兔兔.jpeg";
+            time.beginPath();
+            time.drawImage(img,0,0,420,420);
+            time.closePath();
+
+            time.beginPath();
+            time.strokeStyle='#E9967A'
+            time.lineWidth=10;
+            time.arc(210,210,200,0,2*Math.PI,true);
+            time.stroke();
+            time.closePath;
+            time.clip();
+
+
+            //分针，每分钟转6deg
+            for(var i=0;i<60;i++){
+                time.save();
+                time.translate(210,210);//把画布的原点移动到原点
+                time.rotate(6*i*Math.PI/180);
+                time.beginPath();
+                time.moveTo(0,-185);
+                time.lineTo(0,-195);
+                time.closePath();
+                time.fillStyle='#D859A1';
+                time.lineWidth=8;
+                time.stroke();
+                time.restore();
+            }
+
+            //小时的刻度,每小时转30deg；
+            for(var i=0;i<12;i++){
+                time.save();
+                time.translate(210,210);
+                time.rotate(30*i*Math.PI/180);
+                time.beginPath();
+                time.moveTo(0,-175);
+                time.lineTo(0,-195);
+                time.closePath();
+                time.strokeStyle='#FFFF00';
+                time.linewidth=10;
+                time.stroke();
+                time.restore();
+            }
+
+            //获取当前时间
+
+            var dates=new Date();
+            var h=dates.getHours();
+            var m=dates.getMinutes();
+            var s=dates.getSeconds();
+            h=h+m/60;
+            m=m+s/60;
+
+            //画时间
+            var h2=dates.getHours();
+            var m2=dates.getMinutes();
+            var str1=h2>9?h2:'0'+h2;
+            var str2=m2>9?m2:'0'+m2;
+            var str=str1+':'+str2;
+            time.beginPath();
+            time.fillStyle='#12B64E';
+            time.fillText(str,180,350);
+            time.font="bold 30px Arial"
+            time.closePath();
+
+            //时针
+            time.save();
+            time.translate(210,210);
+            time.rotate(30*h*Math.PI/180);
+            time.beginPath();
+            time.moveTo(0,15);
+            time.lineTo(0,-130);
+            time.closePath();
+            time.fillStyle='#29B2D9';
+            time.linewidth=10;
+            time.stroke();
+            time.restore();
+
+            //分针
+            time.save();
+            time.translate(210,210);
+            time.rotate(6*m*Math.PI/180);
+            time.beginPath();
+            time.moveTo(0,15);
+            time.lineTo(0,-150);
+            time.closePath();
+            time.strokeStyle='#D859A1';
+            time.lineWidth=5;
+            time.stroke();
+            time.restore();
+
+            //秒针
+            time.save();
+            time.translate(210,210);
+            time.rotate(6*s*Math.PI/180);
+            time.beginPath();
+            time.moveTo(0,15);
+            time.lineTo(0,-170);
+            time.closePath();
+            time.strokeStyle='#D01B5A';
+            time.lineWidth=3;
+            time.stroke();
+            time.closePath();
+
+            //秒针底部的圆圈
+            time.beginPath();
+            time.arc(0,0,8,0,2*Math.PI,true);
+            time.fillStyle='#D859A1';
+            time.strokeStyle='D01B5A';
+            time.linewidth=3;
+            time.stroke;
+            time.fill();
+            time.closePath();
+
+            //秒针顶部的圆
+            time.beginPath();
+            time.arc(0,-155,4,0,2*Math.PI,true);
+            time.fillStyle='#D859A1';
+            time.strokeStyle='D01B5A';
+            time.linewidth=3;
+            time.stroke;
+            time.fill();
+            time.closePath();
+            time.restore();
+        }
+
+
+</script>
+
+</body>
+</html>
