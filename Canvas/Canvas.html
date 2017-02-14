@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+
+        #drawing{
+            border: 1px solid white;
+            display: block;
+            margin-left:500px;
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="drawing" width="800px" height="600px">
+
+
+
+
+</canvas>
+
+<script>
+    var drawing=document.getElementById("drawing");
+
+    //确认浏览器是否支持getContext
+    if(drawing.getContext){
+        /*
+        //获取图片的数据URL
+        var imgURL=drawing.toDataURL("img/1.png")
+        //显示图像
+        var image=document.createElement("img");
+        image.src=imgURL;
+        document.body.appendChild(image);
+        */
+        var context=drawing.getContext("2d");
+        /*
+       //描边
+        context.strokeStyle="red";
+        //填充
+        context.fillStyle="#0000ff";
+        */
+/*
+        //绘制红色矩形
+        context.fillStyle="#ff0000";
+        //以（10，10）为起点，高宽为50
+        context.fillRect(10,10,50,50);
+
+        //绘制半透明的蓝色矩形
+        context.fillStyle="rgba(0,0,255,0.5)";
+        context.fillRect(30,30,50,50);
+
+        //在矩形重叠的地方强出一个小矩形
+        context.clearRect(40,40,10,10);
+*/
+        //绘制路径
+        //开始路径
+        context.beginPath();
+
+        //绘制外圆
+        context.arc(100,100,99,0,2*Math.PI,false);
+
+        //绘制内圆
+        context.moveTo(194,100);
+        context.arc(100,100,94,0,2*Math.PI,false);
+
+        //变换原点
+        context.translate(100,100);
+
+        //旋转表针
+        context.rotate(1);
+
+        //绘制分针
+        context.moveTo(0,0);
+        context.lineTo(0,-85);
+
+        //绘制时针
+        context.moveTo(0,0);
+        context.lineTo(-65,0);
+
+
+        //描边路径
+        context.stroke();
+
+        context.font="blod 14px Arial";
+        context.textAlign="center";
+        context.textBaseline="middle";
+
+        /*
+        context.fillText("12",100,20);
+        context.fillText("1",140,30);
+        context.fillText("2",170,60);
+        context.fillText("3",180,100);
+        context.fillText("4",170,140);
+        context.fillText("5",140,170);
+        context.fillText("6",100,180);
+        context.fillText("7",60,170);
+        context.fillText("8",30,140);
+        context.fillText("9",20,100);
+        context.fillText("10",30,60);
+        context.fillText("11",60,30);
+        */
+
+
+
+    }
+</script>
+
+</body>
+</html>
