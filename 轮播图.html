@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        #lbt div{
+            width: 400px;
+            height: 300px;
+            border: 2px solid yellowgreen;
+            display: none;
+            background-color: #7cc4e7;
+
+        }
+        a{
+            line-height: 3;
+            padding: 10px;
+            border: 1px dashed palevioletred;
+
+        }
+        span{
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .active{
+            background-color: orange;
+        }
+
+        .container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+
+
+        .row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+
+        <div id="lbt">
+            <span id="left">&lt;</span>
+            <a href="JavaScript:void (0)" class="active">1</a>
+            <a href="JavaScript:void (0)">2</a>
+            <a href="JavaScript:void (0)">3</a>
+            <a href="JavaScript:void (0)">4</a>
+            <a href="JavaScript:void (0)">5</a>
+            <span id="right">&gt;</span>
+
+            <div style="display: block"><img src="img/狗狗.jpg"></div>
+            <div><img src="img/汤唯.jpg"></div>
+            <div><img src="img/梦幻.jpg"></div>
+            <div><img src="img/雪山.jpg"></div>
+            <div><img src="img/小兔兔.jpeg"></div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+
+    var lbt=document.getElementById("lbt");
+
+    var divs=lbt.getElementsByTagName("div");
+
+    var as=lbt.getElementsByTagName("a");
+
+    var spans=lbt.getElementsByTagName("span");
+
+    var spanindex=0;    //左右按钮的索引值
+    //定时器
+    var timer=null;
+    clearInterval(timer);
+    timer=setInterval(moveRight,1000);
+    spans[1].onclick=moveRight;
+
+    //创建一个向右的定时器函数
+
+    function moveRight(){
+        spanindex++;
+        if(spanindex==divs.length){
+            spanindex=0;
+        }
+        for(var i=0;i<divs.length;i++){
+            divs[i].style.display="none";
+            as[i].className="";
+
+        }
+        divs[spanindex].style.display="block";
+        as[spanindex].className="active";
+    }
+    //移入鼠标时停止定时器，移出时开始定时器
+    for(var j=0;j<divs.length;j++){
+        divs[j].onmousemove=function(){
+            clearInterval(timer);
+
+        };
+        divs[j].onmouseout=function(){
+            clearInterval(timer);
+            timer=setInterval(moveRight,1000);
+        };
+    }
+
+    //向右按钮
+    spans[1].onclick=function(){
+        spanindex++;
+        if(spanindex==divs.length){
+            //当到达最后一张图时，继续点击切换为第一张，即索引为0；
+            spanindex=0;
+
+        }
+        for(var i=0;i<divs.length;i++){
+            divs[i].style.display="none";
+            as[i].className="";
+
+        }
+        divs[spanindex].style.display="block";
+        as[spanindex].className="active";
+    }
+    //左侧按钮
+    spans[0].onclick=function(){
+        spanindex--;
+        if(spanindex==-1){
+            //当到达最后一张图时，继续点击切换为第一张，即索引为0；
+            spanindex=divs.length-1;
+        }
+        for(var i=0;i<divs.length;i++){
+            divs[i].style.display="none";
+            as[i].className="";
+
+        }
+        divs[spanindex].style.display="block";
+        as[spanindex].className="active";
+    }
+    for(var i=0;i<as.length;i++){
+
+        as[i].setAttribute("索引值",i);
+        as[i].onclick=function(){
+
+            for(var i=0;i<as.length;i++){
+                as[i].className="";
+                divs[i].style.display="none";
+
+            }
+            this.className="active";
+
+            divs[this.getAttribute("索引值")].style.display="block";
+
+            spanindex=this.getAttribute("索引值");
+        }
+
+    }
+
+
+</script>
+
+
+
+
+</body>
+</html>
