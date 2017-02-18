@@ -34,12 +34,12 @@ p{
     font-weight: bold;
     font-size: 30px;
 }
-#imagegallery{
+#imageGallery{
     list-style: none;
 }
-#imagegallery li{
+#imageGallery li{
     display: inline;
 }
-#imagegallery li a img {
+#imageGallery li a img {
     border: 0;
 }
