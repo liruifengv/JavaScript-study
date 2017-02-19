@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84cb5f51-2475-443a-bf12-34412a395fd6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JavaScript图片库/Pic.html" afterPath="$PROJECT_DIR$/JavaScript图片库/Pic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/轮播图.html" afterPath="$PROJECT_DIR$/轮播图.html" />
-    </list>
+    <list default="true" id="84cb5f51-2475-443a-bf12-34412a395fd6" name="Default" comment="" />
     <ignored path="JavaScript-study.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
