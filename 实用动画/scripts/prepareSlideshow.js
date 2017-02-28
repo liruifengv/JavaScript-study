@@ -15,7 +15,7 @@ function prepareSlideshow(){
     preview.style.top="0px";
     preview.style.left="0px";
     */
-    
+
     //取得表中的所有链接
     var list=document.getElementById("linklist");
     var links=document.getElementsByTagName("a");
