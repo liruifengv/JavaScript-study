@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50a9ab2e-cfe4-4071-b1e9-9cd3ff7fa5ad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/动画/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/实用动画/style/layout.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/实用动画/list.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/动画/scripts/positionMessage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/实用动画/scripts/prepareSlideshow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="50a9ab2e-cfe4-4071-b1e9-9cd3ff7fa5ad" name="Default" comment="" />
     <ignored path="JavaScript-study.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
