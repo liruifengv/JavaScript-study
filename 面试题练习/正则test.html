@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var string="我的账户余额：2235467.20";
+    var str=parseFloat(string.split(/,/)).join('');
+    alert(str.match(/\d+(\.\d+)?/g));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function person(){
+        return this.name;
+    }
+    var someOne={
+        name:'Jhon',
+        age:18
+    }
+    person.call(someOne)
+</script>
+
+</body>
+</html>

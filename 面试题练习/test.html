@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .container{
+        width: 300px;
+        border: 1px solid #000;
+        background-color: #aaa;
+        overflow: hidden;
+    }
+    .clearfix{
+        zoom: 1;
+    }
+    .clearfix:after{
+        content: ".";
+        height: 0;
+        clear: both;
+        display: block;
+        visibility: hidden;
+    }
+    .left{
+        width: 100px;
+        height: 100px;
+        background-color: #ffff00;
+        float: left;
+
+    }
+    .right{
+        width: 100px;
+        height: 100px;
+        background-color: #fa0000;
+        float: right;
+    }
+
+
+</style>
+<body>
+<div class="container">
+    <div class="left"></div>
+    <div class="right"></div>
+
+</div>
+
+</body>
+</html>
