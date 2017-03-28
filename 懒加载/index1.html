@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>懒加载</title>
+    <style>
+        img{
+            width: 1000px;
+            margin-bottom: 30px;
+            min-height: 400px;
+        }
+    </style>
+</head>
+<body>
+<img src="img/4.jpg" data-url="img/2.jpg">
+<img src="img/4.jpg" data-url="img/5.jpg">
+<img src="img/4.jpg" data-url="img/6.jpg">
+
+<script>
+    //封装成对象
+    var lazyload={
+        //获取元素到页面顶部的距离
+        getoffsetTop:function(elem){
+            var offTop=0;
+            while(elem!=null){
+                offTop+=elem.offsetTop;
+                elem=elem.offsetParent;
+            }
+            return offTop;
+        },
+        //判断是否加载图片
+        isload:function(elem){
+            //可视窗口的高度
+            var cHeight=window.innerHeight||document.body.clientHeight||document.documentElement.clientHeight;
+            //浏览器可视窗口距离页面顶部的距离
+            var sX=window.pageXOffset||document.body.scrollTop||document.documentElement.scrollTop;
+            /*表示图片在什么时候进行加载，默认为 0 表示当图片进入可视区域立即加载；设为正数表示图片距离
+            threshold像素进入可视区域进行加载；设为负数表示图片进入可视区域threshold像素时进行加载。*/
+            var threshold=10;
+            //元素到页面顶部的距离
+            var oTop=this.getoffsetTop(elem);
+            //元素到浏览器顶部的距离
+            var viewHeight=oTop-sX-threshold;
+
+            //图片进入浏览器可视区域，加载图片
+            if(cHeight>=viewHeight){
+                return true;
+            }else{                      //图片没进入浏览器可视区域，不加载图片
+                return false;
+            }
+        },
+        //加载图片时。isFadein:true时，图片使用淡入动画效果加载
+        loadImg:function(elems,isFadein){
+            for(var i= 0,len=elems.length;i<len;i++){
+                if(this.isload(elems[i])){
+                    //已经加载过的图片，下次判断那些图片该加载时，直接跳过
+                    if(elems[i].className!=="loaded"){
+                        //针对使用data-自定义的属性，要使用getAttribute()获取值
+                        elems[i].src=elems[i].getAttribute("data-url");    //实际的url替换原来的url
+                        elems[i].className="loaded";        //被加载出来的图片，添加class属性，用来判断下次是否要加载
+                        if(isFadein){
+                            this.fadeIn(elems[i]);         //淡入效果加载图片
+                        }
+                    }
+                }else{
+                    return;      //下一个图片没有进入加载区域，就不再循环
+                }
+            }
+        },
+        //使用淡入动画效果加载图片
+        fadeIn:function(elem){
+            var n= 0,
+                isnotIE=window.XMLHttpRequest?true:false;
+            if(isnotIE){
+                elem.style.opacity=1;
+            }else{
+                elem.style.filter="alpha(opacity=1)";
+            }
+            var t=setTimeout(function(){
+                if(n<100){
+                 n+=5;
+                    if(isnotIE){
+                        elem.opacity=n/100;
+                    }else{
+                        elem.style.filter="alpha(opacity="+n+")";
+                    }
+                }else{
+                    clearTimeout(t);
+                }
+            },100);
+        }
+    }
+
+    window.onscroll=function(){
+        lazyload.loadImg(document.getElementsByTagName("img"),true);
+    };
+    window.onload=function(){
+        lazyload.loadImg(document.getElementsByTagName("img"),true);
+    }
+</script>
+
+</body>
+</html>

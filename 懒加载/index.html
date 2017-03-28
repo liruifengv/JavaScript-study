@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>懒加载</title>
+    <style>
+        img{
+            width: 100%;
+            margin-bottom: 30px;
+            min-height: 400px;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<img lazyload="img/1.jpg" src="">
+<img lazyload="img/2.jpg" src="">
+<img lazyload="img/3.jpg" src="">
+<img lazyload="img/4.jpg" src="">
+<img lazyload="img/5.jpg" src="">
+<img lazyload="img/6.jpg" src="">
+<script src="jquery/dist/jquery.js"></script>
+<script>
+    /*
+    var imgNum=document.getElementsByTagName("img").length;
+    var imgObj=document.getElementsByTagName("img");
+    var l=0;
+
+    window.onscroll=function(){
+        var seeHeight=document.documentElement.clientHeight;
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        for(var i=l;i<imgNum;i++){
+            if(imgObj[i].offsetTop<seeHeight+scrollTop){
+                console.log(imgObj[i].getAttribute("src"));
+                console.log(imgObj[i].src);
+                if(imgObj[i].getAttribute("src")==""){
+                    imgObj[i].src=imgObj[i].getAttribute("lazyload");
+                }
+            }
+            if(imgObj[i].offsetTop>seeHeight+scrollTop){
+                l=i;
+                break;
+            }
+        }
+    }
+*/
+    var l=0
+    //js方法翻译版
+    $(window).bind("scroll", function(event){
+
+        for(var i=l;i<$("img").length;i++){
+            if($("img").eq(i).offset().top < parseInt($(window).height()) + parseInt($(window).scrollTop())){
+                if($("img").eq(i).attr("src") == ""){
+                    var lazyloadsrc=$('img').eq(i).attr("lazyload");
+                    $("img").eq(i).attr("src",lazyloadsrc);
+                }
+            }
+            if($("img").eq(i).offset().top  > parseInt($(window).height()) + parseInt($(window).scrollTop())){
+                l=i;
+                break;
+            }
+        }
+
+    });
+</script>
+
+</body>
+</html>
