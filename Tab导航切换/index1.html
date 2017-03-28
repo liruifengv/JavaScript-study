@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Tab导航切换</title>
+    <style>
+        nav{
+            width: 408px;
+            margin: 0 auto;
+            overflow: hidden;
+
+        }
+
+        nav>li{
+            float: left;
+            border: 1px solid #000;
+            line-height: 30px;
+            text-align: center;
+            width: 100px;
+            height: 30px;
+            cursor: pointer;
+            list-style: none;
+        }
+        li:first-child{
+            border-bottom: none;
+            background-color: #ff0000;
+        }
+        #container{
+            margin: 0 auto;
+            width: 405px;
+            height: 300px;
+            border: 1px solid #000;
+            border-top: none;
+            text-align: center;
+        }
+        #container>div{
+            width: 406px;
+            height: 300px;
+            position: absolute;
+            display: none;
+        }
+        #container #cont1{
+            display: block;
+
+        }
+    </style>
+</head>
+<body>
+<nav>
+
+        <li>Tab1</li>
+        <li>Tab2</li>
+        <li>Tab3</li>
+        <li>Tab4</li>
+
+</nav>
+<div id="container">
+    <div id="cont1">
+        11111111111111111111111111111111111111
+    </div>
+    <div id="cont2">
+        222222222222222222222222222222222222222
+    </div>
+    <div id="cont3">
+        3333333333333333333333333333333333333333
+    </div>
+    <div id="cont4">
+        4444444444444444444444444444444444444444
+    </div>
+</div>
+
+<script>
+    var nav=document.getElementsByTagName("nav");
+    var oli=document.getElementsByTagName("li");
+    var container=document.getElementById("container");
+    var oCont=container.getElementsByTagName("div");
+    console.log(oli);
+    console.log(oCont);
+    for(var i=0;i<oli.length;i++){
+        oli[i].onclick=function(i){
+            function cl(){
+                for(var j=0;j<oli.length;j++){
+                    oli[j].style.backgroundColor="#fff";
+                    oCont[j].style.display="none";
+                    oli[j].style.borderBottom="1px solid #000";
+                }
+                oli[i].style.backgroundColor="#ff0000";
+                oCont[i].style.display="block";
+                oli[i].style.borderBottom="none";
+            }
+            return cl;
+        }(i)
+    }
+</script>
+
+</body>
+</html>
