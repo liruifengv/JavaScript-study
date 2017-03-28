@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>JS放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #demo{
+            display: block;
+            width: 400px;
+            height: 265px;
+            margin: 50px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+        #small-box{
+            position: relative;
+            z-index: 1;
+        }
+        #float-box{
+            display: none;
+            width: 160px;
+            height: 120px;
+            position: absolute;
+            background-color: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            cursor: move;
+        }
+        #big-box{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            width: 480px;
+            height: 360px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;
+        }
+        #big-box img{
+            position: absolute;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <div id="small-box">
+        <div id="float-box"></div>
+        <img src="img/small.jpg">
+    </div>
+    <div id="big-box">
+        <img src="img/big.jpg">
+    </div>
+</div>
+<script>
+    window.onload=function(){
+        var objDemo=document.getElementById("demo");
+        var objSmallBox=document.getElementById("small-box");
+        var objFloatBox=document.getElementById("float-box");
+        var objBigBox=document.getElementById("big-box");
+        var objBigBoxImg=objBigBox.getElementsByTagName("img")[0];
+
+        objSmallBox.onmouseover=function(){
+            objFloatBox.style.display="block";
+            objBigBox.style.display="block";
+        }
+
+        objSmallBox.onmouseout=function(){
+            objFloatBox.style.display="none";
+            objBigBox.style.display="none";
+        }
+        objSmallBox.onmousemove=function(ev){
+            var _event=ev;
+            var left=_event.clientX-objDemo.offsetLeft-objSmallBox.offsetLeft-objFloatBox.offsetWidth/2;
+            var top=_event.clientY-objDemo.offsetTop-objSmallBox.offsetTop-objFloatBox.offsetHeight/2;
+
+            objFloatBox.style.left=left+"px";
+            objFloatBox.style.top=top+"px";
+
+            if(left<0){
+                left=0;
+            }else if(left>(objDemo.offsetWidth-objFloatBox.offsetWidth)){
+                left=objDemo.offsetWidth-objFloatBox.offsetWidth;
+            }
+
+            if(top<0){
+                top=0;
+            }else if(top>(objDemo.offsetHeight-objFloatBox.offsetHeight)){
+                top=objDemo.offsetHeight-objFloatBox.offsetHeight;
+            }
+
+
+            var percentX=left/(objDemo.offsetWidth-objFloatBox.offsetWidth);
+            var percentY=top/(objDemo.offsetHeight-objFloatBox.offsetHeight);
+
+            objBigBoxImg.style.left=-percentX*(objBigBoxImg.offsetWidth-objBigBox.offsetWidth)+"px";
+            objBigBoxImg.style.top=-percentY*(objBigBoxImg.offsetHeight-objBigBox.offsetHeight)+"px";
+        }
+    }
+
+</script>
+</body>
+</html>
