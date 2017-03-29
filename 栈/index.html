@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用栈来检验回文</title>
+</head>
+<body>
+<script>
+    function Stack(){
+        this.dataStore=[];
+        this.top=0;
+        this.push=push;
+        this.pop=pop;
+        this.peek=peek;
+        this.clear=clear;
+        this.length=length;
+    }
+
+    function push(element){
+        this.dataStore[this.top++]=element;
+    }
+
+    function peek(){
+        return this.dataStore[this.top-1];
+    }
+
+    function pop(){
+        return this.dataStore[--this.top];
+    }
+
+    function clear(){
+        this.top=0;
+    }
+
+    function length(){
+        return this.top;
+    }
+
+    function isPalindrome(word){
+        var s=new Stack();
+        for(var i=0;i<word.length;i++){
+            s.push(word[i]);
+        }
+        var rword="";
+        while(s.length()>0){
+            rword+= s.pop();
+        }
+        if(word==rword){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    var word="hello";
+    if(isPalindrome(word)){
+        console.log(word+" 是回文。");
+    }else{
+        console.log(word+" 不是回文");
+    }
+
+    word="racecar";
+    if(isPalindrome(word)){
+        console.log(word+" 是回文。");
+    }else{
+        console.log(word+" 不是回文");
+    }
+
+
+</script>
+</body>
+</html>
