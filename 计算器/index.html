@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>简易计算器</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            margin: auto auto;
+        }
+        td{
+            width: 150px;
+            height: 70px;
+            line-height: 70px;
+        }
+        .btn{
+            width: 150px;
+            height: 70px;
+            font-size: x-large;
+            cursor: pointer;
+        }
+        .btn_click{
+            width: 302px;
+            height: 70px;
+            font-size: x-large;
+            cursor: pointer;
+        }
+        .txt{
+            width: 600px;
+            line-height: 100px;
+            font-size: x-large;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td colspan="4"><input class="txt" type="text" disabled></td>
+    </tr>
+    <tr>
+        <td colspan="2"><input class="btn_click" type="button" value="AC"></td>
+        <td colspan="2"><input class="btn_click" type="button" value="DEL"></td>
+    </tr>
+    <tr>
+        <td><input class="btn" type="button" value="7"></td>
+        <td><input class="btn" type="button" value="8"></td>
+        <td><input class="btn" type="button" value="9"></td>
+        <td><input class="btn" type="button" value="*"></td>
+    </tr>
+    <tr>
+        <td><input class="btn" type="button" value="4"></td>
+        <td><input class="btn" type="button" value="5"></td>
+        <td><input class="btn" type="button" value="6"></td>
+        <td><input class="btn" type="button" value="/"></td>
+    </tr>
+    <tr>
+        <td><input class="btn" type="button" value="1"></td>
+        <td><input class="btn" type="button" value="2"></td>
+        <td><input class="btn" type="button" value="3"></td>
+        <td><input class="btn" type="button" value="-"></td>
+    </tr>
+    <tr>
+        <td><input class="btn" type="button" value="0"></td>
+        <td><input class="btn" type="button" value="."></td>
+        <td><input class="btn" type="button" value="+"></td>
+        <td><input class="btn" type="button" value="="></td>
+    </tr>
+</table>
+<script>
+    //获取值到屏幕上
+    //获取按钮对象
+    var btn_txt=document.getElementsByClassName("btn");
+    //获取屏幕对象
+    var txt=document.getElementsByClassName("txt")[0];
+    var way_res=[];
+    //给btn_txt数组对象添加onclick事件
+    for(var i=0;i<btn_txt.length;i++){
+        btn_txt[i].onclick=function(){
+            if(txt.value==""&&this.value=="."){
+                txt.value="0.";
+            }else{
+                //用户输入的是数字或点
+                if(!isNaN(this.value)||this.value=="."){               //判断屏幕中是否已经有点存在
+                    if(txt.value.indexOf(".")!=-1){                    //有点存在的情况
+                        //indexOf()用来查找字符，如果有则返回当前位置，没有返回-1
+                        if(this.value!="."){                           //当前按的不是点，进行拼接
+                            txt.value+=this.value;                    //把用户按的数字添加到屏幕上
+                        }
+                    }else{
+                        txt.value+=this.value;                            //没点存在直接拼接
+                    }
+                }else{
+                    //用户输入的是运算符号
+                    if(this.value!="="){
+                        //是符号但不是等号
+                        way_res[way_res.length]=txt.value;
+                        //存符号
+                        way_res[way_res.length]=this.value;
+                        //清屏
+                        txt.value="";
+                    }else{
+                        //用户按的是等号，计算屏幕上表达式的值
+                        //先将屏幕上所有值保存到数组里
+                        way_res[way_res.length]=txt.value;
+                        //eval()方法 专门用来计算表达式的值
+                        //join方法 将数组的每位拼接成字符串
+                        txt.value=eval(way_res.join(""));
+                        //计算完成之后将数组清空
+                        way_res=[];
+                    }
+
+                }
+            }
+            }
+
+    }
+
+    var btn_way=document.getElementsByClassName("btn_click");
+    for(var i=0;i<btn_way.length;i++){
+        btn_way[i].onclick=function(){
+            if(this.value=="AC"){
+                way_res=[];
+                txt.value="";
+            }else{
+                //substr(参数1，参数2)截断字符串
+                //参数1从哪个位置开始，参数2截取多少长度
+                txt.value=txt.value.substr(0,txt.value.length-1);
+            }
+        }
+    }
+</script>
+</body>
+</html>
