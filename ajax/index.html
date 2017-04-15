@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ajax</title>
+    <style>
+        #T1{
+            border: 1px solid #000;
+            height: 40px;
+            width: 300px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body onload="loadXMLDoc('test_xmlhttp.txt')">
+<div id="T1"></div>
+<br>
+<button onclick="loadXMLDoc('test_xmlhttp2.txt')">Click</button>
+<script>
+    var xmlhttp;
+    function loadXMLDoc(url){
+        xmlhttp=null;
+        if(window.XMLHttpRequest){
+            xmlhttp=new  XMLHttpRequest();
+        }else if(window.ActiveXObject){
+            xmlhttp=new ActiveXObject("Microsoft.HMLHTTP");
+        }
+        if(xmlhttp!=null){
+            xmlhttp.onreadystatechange=state_Change;
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send(null);
+        }else{
+            alert("你的浏览器不支持ajax");
+        }
+    }
+    function state_Change(){
+        if(xmlhttp.readyState==4){
+            if(xmlhttp.status==200){
+                document.getElementById("T1").innerHTML=xmlhttp.responseText;
+            }else{
+                alert("Problem retrieving data :"+xmlhttp.statusText);
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用xml响应</title>
+</head>
+<body>
+<span id="ajaxButton" style="cursor: pointer;text-decoration: underline">
+    Make a request
+</span>
+<script>
+    (function(){
+        var httpRequest;
+        document.getElementById("ajaxButton").onclick=function(){
+            makeRequest('test.xml');
+        };
+        function makeRequest(url){
+            httpRequest=new XMLHttpRequest();
+            if(!httpRequest){
+                alert('Giving up:(Cannot create an XMLHTTP instance)');
+                return false;
+            }
+            httpRequest.onreadystatechange=alertContents;
+            httpRequest.open('GET',url);
+            httpRequest.send();
+        }
+        function alertContents(){
+            if(httpRequest.readyState===XMLHttpRequest.DONE){
+                if(httpRequest.status===200){
+                    var xmlDoc=httpRequest.responseXML;
+                    var root_node=xmlDoc.getElementsByTagName('root').item(0);
+                    alert(root_node.firstChild.data);
+                }else{
+                    alert('There is a problem with the request.');
+                }
+            }
+        }
+    })()
+</script>
+</body>
+</html>
