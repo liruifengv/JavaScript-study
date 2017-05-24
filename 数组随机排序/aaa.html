@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var arr = ['foo', 'bar', 'hello', 'world'];
+
+    // 4 3 2 1
+    var first = {}
+    var result = [];
+    arr.forEach((first, idx, its) => {
+        its.filter(e => e!==first).forEach((sec, idx, its) => {
+        its.filter(e => e!==sec).forEach((third, idx, its)=> {
+        its.filter(e => e!=third).forEach((forth, idx, its) => {
+        console.log(first, sec, third, forth);
+    result.push(first + sec + third + forth);
+    });
+    });
+    });
+    });
+</script>
+
+</body>
+</html>

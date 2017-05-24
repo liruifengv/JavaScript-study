@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            list-style-position: inside;
+        }
+    </style>
+</head>
+<body>
+<ol>
+   <li>啊啊啊</li>
+   <li>大大</li>
+   <li>是否收到个</li>
+   <li>撒干啥的</li>
+   <li>规范化风格化个</li>
+   <li>是埃杜阿多</li>
+   <li>撒大苏打</li>
+   <li>dads发</li>
+   <li>大苏打撒法</li>
+   <li>韩庚韩寒</li>
+   <li>额我仍然</li>
+   <li>而微软</li>
+   <li>魏汝稳</li>
+</ol>
+
+<script>
+    "use strict"
+    class Point{
+        getX(){
+            console.log(this.x);
+        }
+    }
+
+    class ColorPoint extends Point{
+        constructor(){
+            super();
+            this.x=2;
+            super.x=3;
+            console.log(this.x);
+            console.log(super.x);
+        }
+        m(){
+            this.getX()
+        }
+    }
+
+    const cp=new ColorPoint();
+    cp.m();
+
+</script>
+</body>
+</html>
