@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Point {
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+
+        toString() {
+            return '(' + this.x + ','+ this.y + ')';
+        }
+    }
+
+    var point = new Point(2,3);
+    point.toString();
+
+    const MyClass = class Me {
+        getClassName(){
+            return Me.name;
+        }
+    };
+
+    let inst = new MyClass();
+
+    inst.getClassName()
+
+</script>
+
+</body>
+</html>
