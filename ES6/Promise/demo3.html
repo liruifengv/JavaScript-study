@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+<script>
+function loadImageAsync(url) {
+	// body...
+	return new Promise(function (resolve,reject) {
+		// body...
+		var image = new Image();
+
+		image.onload = function () {
+			// body...
+			resolve(image);
+		};
+
+		image.onerror =function () {
+			// body...
+			reject(new Error('Cloud not load image at '+ url));
+		};
+
+		image.src = url;
+	});
+}
+</script>
+    
+</body>
+</html>
