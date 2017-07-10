@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <div id="A" class="a">A</div>
+    <div id="B" class="b" style="display: none;">B</div>
+    <div id="C" class="c" style="display: none;">C</div>
+
+    <script>
+    function hashChanged(hashObj) {
+    	//变化之后的URL
+    	var newhash = hashObj.newURL.split('#')[1];
+    	//变化之前的URL
+    	var oldhash = hashObj.oldURL.split('#')[1];
+    	//将对应的hash下界面显示和隐藏
+    	document.getElementById(oldhash).style.display = 'none';
+    	document.getElementById(newhash).style.display = 'block';
+    }
+    //监听路由变化
+    window.onhashchange = hashChanged;
+
+    window.localtion.hash = "A";
+    </script>
+</body>
+</html>
