@@ -19,13 +19,15 @@
     timeout: 30000,
     maximumAge: 0
   };
-  
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success,error,options)
   } else {
     alert('您的浏览器不支持 Geolocation')
   }
 
+  let watchId = navigator.geolocation.watchPosition(success,error,options);
+  navigator.geolocation.clearWatch(watchId)
 </script>
 </body>
 </html>
