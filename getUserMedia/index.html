@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>调用摄像头拍照 </title>
+    <style>
+      .video,.canvas{
+        border: 1px solid #ddd
+      }
+    </style>
+</head>
+<body>
+  <video id="video" autoplay style="width:480px;height:320px;"></video>
+  <div><button id="capture">拍照</button></div>
+  <canvas id="canvas" width="480" height="320"></canvas>
+<script>
+  function getUserMedia(constrains,success,error) {
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia(constrains).then(success).catch(error)
+    } else if (navigator.webkitGetUserMedia) {
+      navigator.webkitGetUserMedia(constrains,success.error)
+    } else if (navigator.mozGetUserMedia) {
+      navigator.mozkitGetUserMedia(constrains,success.error)
+    } else if (navigator.getUserMedia) {
+      navigator.getUserMedia(constrains,success,error)
+    }
+  }
+
+  let video = document.getElementById('video')
+  let canvas = document.getElementById('canvas')
+  let context = canvas.getContext('2d')
+
+  function success(stream) {
+    let CompatibleUrl = window.URL || window.webkitURL
+
+    video.src = CompatibleUrl.createObjectURL(stream)
+    video.play()
+  }
+
+  function error(error) {
+    console.log(error.name,error.message)
+  }
+  
+  if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia) {
+    getUserMedia({video:{width:480,height:320}},success,error)
+  } else {
+    console.log('you bower id not getUserMedia')
+  }
+
+  document.getElementById('capture').addEventListener('click',function () {
+    context.drawImage(video,0,0,480,320)
+  })
+</script>
+</body>
+</html>
